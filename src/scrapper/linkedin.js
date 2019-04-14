@@ -1,7 +1,7 @@
 var scraper = require('html-scrape-loader');
 
-const linkedinScrapper = (params) => scraper({
-    url: params.url,
+const linkedinScrapper = (id) => scraper({
+    url: `https://www.linkedin.com/jobs/view/${id}`,
     selectors: {
         paragraphs: '.post p',
         intro: ['.post, .content', '.intro'],

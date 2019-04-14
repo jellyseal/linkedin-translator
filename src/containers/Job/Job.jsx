@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+import { setJob } from '../../store/actions/JobActions';
 
 import styles from './Job.module.scss';
 
@@ -10,10 +14,15 @@ class Job extends Component {
             loading: true,
         };
     }
-    componentDidMount() {
-        setTimeout(() => {
-            this.setState({ loading: false });
-        }, 5000);
+    async componentDidMount() {
+        const {
+            match: { params: { id } },
+            getJobDescription
+        } = this.props;
+        const response = await getJobDescription(id);
+        if (response.data) {
+           this.setState({ loading: false });
+        }
     }
     render() {
         const { loading } = this.state;
@@ -32,4 +41,10 @@ class Job extends Component {
     }
 }
 
-export default Job;
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getJobDescription: setJob,
+    }, dispatch);
+  }
+
+export default connect(null, mapDispatchToProps)(Job);
