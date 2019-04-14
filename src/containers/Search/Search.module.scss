@@ -1,0 +1,31 @@
+.container {
+  text-align: center;
+  width: 70%;
+  box-sizing: content-box;
+  padding: 0 30px;
+  display: block;
+  margin: auto;
+  position: relative;
+  margin-top: 25px;
+}
+
+.field {
+  width: 50%;
+  height: 65px;
+  margin: 0 !important;
+}
+
+.customPaper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.button {
+  margin-left: 20px !important;
+  background-color: #0073b1 !important; 
+  &:disabled {
+    background-color: rgba(0, 0, 0, 0.12) !important;
+  }
+}
