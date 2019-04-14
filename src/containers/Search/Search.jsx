@@ -47,9 +47,11 @@ class Search extends Component {
         }
         this.setState({ url });
     }
-    sendUrl() {
+    goToJob() {
         const { url } = this.state;
-        console.log(url);
+        const { history } = this.props;
+        const splicedUrl = url.split('/'); 
+        history.push(`job/${splicedUrl[5]}`);
     }
     render() {
         const { url, error, label } = this.state;
@@ -71,7 +73,7 @@ class Search extends Component {
                     className={styles.button}
                     variant="contained"
                     color="primary"
-                    onClick={url !== '' ? () => this.sendUrl() : () => {}}
+                    onClick={url !== '' ? () => this.goToJob() : () => {}}
                 >
                     Search
                 </Button>
